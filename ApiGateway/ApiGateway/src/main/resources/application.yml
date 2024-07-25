@@ -1,0 +1,27 @@
+server:
+  port: 9000
+  
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      routes:
+      - id: booking-route
+        uri: lb://FlightBooking-Microservice
+        predicates:
+        - Path=/booking/**
+        
+      - id: flight-route
+        uri: lb://Flight-MicroService
+        predicates:
+        - Path=/flight/**  
+          
+      - id: passenger-route
+        uri: lb://Passenger-Microservice
+        predicates:
+        - Path=/passenger/**
+
+    
+
+       
